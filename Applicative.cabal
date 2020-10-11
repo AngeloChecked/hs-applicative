@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6f30e8c04f1d64de36b804a80471e3a367c1392f426c6f856e5e8cb054eef97d
+-- hash: 934fe077e17c894495b467b5d9b43735ed5a9dd6d571e802716c110ae0c08ea7
 
 name:           Applicative
 version:        0.1.0.0
@@ -12,13 +12,17 @@ build-type:     Simple
 
 library
   exposed-modules:
-      Lib
+      Applicative
+      BadMonoid
+      CustomList
   other-modules:
       Paths_Applicative
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
+      QuickCheck
+    , base >=4.7 && <5
+    , checkers
     , hspec
   default-language: Haskell2010
 
@@ -31,7 +35,9 @@ executable Applicative-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       Applicative
+    , QuickCheck
     , base >=4.7 && <5
+    , checkers
     , hspec
   default-language: Haskell2010
 
@@ -39,13 +45,17 @@ test-suite Applicative-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      PrSpec
+      ApplicativeSpec
+      BadMonoidSpec
+      CustomListSpec
       Paths_Applicative
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       Applicative
+    , QuickCheck
     , base >=4.7 && <5
+    , checkers
     , hspec
   default-language: Haskell2010
